@@ -34,5 +34,19 @@ def main():
         fio.columns = ["Прізвище", "Ім'я", "По_батькові"]
         df = pd.concat([df.drop(columns=["ФИО"]), fio], axis=1)
 
+    if "Дата рождения" in df.columns:
+        df["Дата рождения"] = pd.to_datetime(
+            df["Дата рождения"], format="%d.%m.%Y", errors="coerce"
+        )
+
+    if "Телефон" in df.columns:
+        df["Телефон"] = (
+            df["Телефон"]
+            .astype(str)
+            .str.replace(r"\D", "", regex=True)
+            .replace("", pd.NA)
+            .astype("Int64")
+        )
+
 if __name__ == "__main__":
     main()
