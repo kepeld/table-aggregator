@@ -44,7 +44,7 @@ def main():
             .astype(str)
             .str.replace(r"\D", "", regex=True)
             .replace("", pd.NA)
-            .astype("Int64")
+            .astype("string")
         )
 
     for col in ["Snils", "INN"]:
