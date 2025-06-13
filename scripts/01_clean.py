@@ -29,5 +29,10 @@ def main():
     if "" in df.columns:
         df = df.drop(columns=[""])
 
+    if "ФИО" in df.columns:
+        fio = df["ФИО"].str.strip().str.split(r"\s+", n=2, expand=True)
+        fio.columns = ["Прізвище", "Ім'я", "По_батькові"]
+        df = pd.concat([df.drop(columns=["ФИО"]), fio], axis=1)
+
 if __name__ == "__main__":
     main()
