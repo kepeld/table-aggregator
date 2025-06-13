@@ -25,6 +25,9 @@ def main():
         dtype=str,
         nrows=args.nrows,
     )
+    df = df.loc[:, ~df.columns.str.contains(r"^Unnamed")]
+    if "" in df.columns:
+        df = df.drop(columns=[""])
 
 if __name__ == "__main__":
     main()
