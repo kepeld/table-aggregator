@@ -65,6 +65,8 @@ def main():
             .replace({"": pd.NA, "nan": pd.NA, "none": pd.NA})
         )
 
+    df = df.astype({col: "string" for col in df.select_dtypes("object").columns})
+
     df.to_parquet(out, engine="pyarrow")
     print(f"Processed {df.shape[0]} rows and {df.shape[1]} columns")
     print(f"Cleaned data saved to {out}")
