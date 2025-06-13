@@ -48,5 +48,23 @@ def main():
             .astype("Int64")
         )
 
+    for col in ["Snils", "INN"]:
+        if col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace(r"\D", "", regex=True)
+                .replace("", pd.NA)
+            )
+
+    if "Email" in df.columns:
+        df["Email"] = (
+            df["Email"]
+            .astype(str)
+            .str.strip()
+            .str.lower()
+            .replace({"": pd.NA, "nan": pd.NA, "none": pd.NA})
+        )
+
 if __name__ == "__main__":
     main()
