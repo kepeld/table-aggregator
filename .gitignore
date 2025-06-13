@@ -1,0 +1,22 @@
+#Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+#Data
+data/**/*.txt
+data/**/*.csv
+data/**/*.parquet
+data/**/*.json
+data/tmp/
+data/raw/
+data/processed/
+data/chunks/
+
+#VS Code
+.vscode/
+
+#MacOS
+.DS_Store
