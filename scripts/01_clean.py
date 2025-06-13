@@ -16,5 +16,15 @@ def main():
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
 
+    df = pd.read_csv(
+        inp,
+        sep=",",
+        encoding="utf-8",
+        skipinitialspace=True,
+        on_bad_lines="skip",
+        dtype=str,
+        nrows=args.nrows,
+    )
+
 if __name__ == "__main__":
     main()
