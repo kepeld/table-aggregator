@@ -18,5 +18,16 @@ def main():
           .agg(lambda s: s.dropna().unique().tolist())
     )
 
+    def flatten(x):
+        return x[0] if isinstance(x, list) and len(x) == 1 else pd.NA
+
+    for col in agg.columns.difference(keys):
+        agg[col] = agg[col].apply(flatten)
+
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    agg.to_parquet(out, engine="pyarrow")
+
+
 if __name__ == "__main__":
     main()
