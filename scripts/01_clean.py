@@ -1,4 +1,3 @@
-# scripts/01_clean.py
 import argparse
 from pathlib import Path
 import pandas as pd
